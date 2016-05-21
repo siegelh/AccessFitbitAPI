@@ -4,6 +4,7 @@ import base64
 import fitbit
 import urlparse
 import sqlite3
+import sys
 
 import os
 from selenium import webdriver
@@ -12,13 +13,12 @@ chromedriver = r"requirements\chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(chromedriver)
 
-date = '2016-05-10'
-
-# These are the secrets etc from Fitbit developer
-username = 'harrisried@gmail.com'
-password = 'harrison17171'
-OAuthTwoClientID = "227LLT"
-ClientOrConsumerSecret = "561f3b8f1120cef9e105dd0cb22df45f"
+# get the users arguments, passed to the script from PowerShell (or cmd)
+username = sys.argv[1]
+password = sys.argv[2]
+OAuthTwoClientID = sys.argv[3]
+ClientOrConsumerSecret = sys.argv[4]
+date = sys.argv[5]
 
 # This is the Fitbit URL
 TokenURL = "https://api.fitbit.com/oauth2/token"
@@ -74,7 +74,7 @@ except urllib2.URLError as e:
     print e.read()
 	
 # Save heartrate data to a database
-conn = sqlite3.connect('example.db')
+conn = sqlite3.connect(r'data\example.db')
 c = conn.cursor()
 try:
     c.executemany('''INSERT INTO intraday_heartrate VALUES (?,?,?)''', intraday_heart_rate_data_list)
