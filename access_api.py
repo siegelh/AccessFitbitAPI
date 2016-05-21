@@ -74,7 +74,7 @@ except urllib2.URLError as e:
     print e.read()
 	
 # Save heartrate data to a database
-conn = sqlite3.connect(r'data\example.db')
+conn = sqlite3.connect(r'data\user_data.db')
 c = conn.cursor()
 try:
     c.executemany('''INSERT INTO intraday_heartrate VALUES (?,?,?)''', intraday_heart_rate_data_list)
