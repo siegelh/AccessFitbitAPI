@@ -24,6 +24,8 @@ This is the code to connect to the Fitbit API and extract intraday heart rate da
 	* Save
   * You have now set up a personal application to access your data in read-only mode from the Fitbit API.
 * Clone the repo and update the `data\user_info.csv` with user information (see requirements above)
+  * To access the client_id and client_secret, click `Manage My Apps` on dev.fitbit.com, and select the personal application you created.
+  * The Client Secret and Client ID will be available, add these along with the login email and password to "data\user_info.csv"
 * Run `get_user_data.py YYYY-MM-DD` with the date that you wish to access data
 * Data will be gathered for each user in the user_info.csv and saved to the SQLite `data\user_data.db` database.
 * Currently the `access_api.py` script will gather and store intraday heartrate data, accurate to 5 second intervals.
