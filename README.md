@@ -1,12 +1,12 @@
-# FitbitAPITesting
+# Access Fitbit API for Personal Data
 
 This is the code to connect to the Fitbit API and extract intraday heart rate data.
 
 ### Requirements
 
 * Python 2.7
-* Requires the login, password, client_id, and client_secret, which should be added to the "data\user_info.csv"
-* To install Python package requirements, run "pip install -r requirements/packages.txt"
+* Requires the login, password, client_id, and client_secret, which should be added to the `data\user_info.csv`
+* To install Python package requirements, run `pip install -r requirements/packages.txt` from `cmd`
 
 ### Instructions
 
