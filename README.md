@@ -10,6 +10,19 @@ This is the code to connect to the Fitbit API and extract intraday heart rate da
 
 ### Instructions
 
+* Set up access to personal data through the Fitbit api by visiting `www.dev.fitbit.com` and registering an app
+  * After clicking `Register An App`, sign in with the account you wish to registering
+  * Fill in the fields in `Register an application` with the following:
+    * Application Name:  "Accessing Personal Data"
+	* Description:  "Logging my personal data"
+	* Application Website: "http://github.com/siegelh/FitbitAPITesting"
+	* Organization:  "Not applicable"
+	* Organization Website: "http://github.com/siegelh/FitbitAPITesting"
+	* OAuth 2.0 Application Type: "Personal"
+	* Callback URL: "http://localhost:9090/register_user"
+	* Default Access Type: "Read-Only"
+	* Save
+  * You have now set up a personal application to access your data in read-only mode from the Fitbit API.
 * Clone the repo and update the `data\user_info.csv` with user information (see requirements above)
 * Run `get_user_data.py YYYY-MM-DD` with the date that you wish to access data
 * Data will be gathered for each user in the user_info.csv and saved to the SQLite `data\user_data.db` database.
