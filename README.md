@@ -34,7 +34,7 @@ This is the code to connect to the Fitbit API and extract intraday heart rate da
 
 The `data\user_data.db` file contains one table `intraday_heartrate` with the following schema:
 
-username (string)|timestamp (timestamp)|value (int)
------------------|---------------------|-----------
+username (*string*)|timestamp (*timestamp*)|value (*int*)
+-------------------|-----------------------|-------------
 useremail@example.com|2015-05-10T10:30:00|75
 useremail@example.com|2015-05-10T10:30:05|78
