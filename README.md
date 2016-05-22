@@ -11,7 +11,7 @@ This is the code to connect to the Fitbit API and extract intraday heart rate da
 ### Instructions
 
 * Set up access to personal data through the Fitbit api by visiting `www.dev.fitbit.com` and registering an app
-  * After clicking `Register An App`, sign in with the account you wish to registering
+  * After clicking `Register An App`, sign in with the account you wish to register
   * Fill in the fields in `Register an application` with the following:
     * Application Name:  "Accessing Personal Data"
 	* Description:  "Logging my personal data"
