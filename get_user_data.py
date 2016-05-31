@@ -1,15 +1,16 @@
 import pandas as pd
-import sys
-from subprocess import call
+from access_api import *
 
-date = sys.argv[1]
+# get the users arguments by looping through users
 users = pd.read_csv(r'data\user_info.csv')
 
-for row in users.iterrows():
-    data = row[1]
-    username = data['username']
-    password = data['password']
-    OAuthTwoClientID = data['OAuthTwoClientID']
-    ClientOrConsumerSecret = data['ClientOrConsumerSecret']
-    call(
-        "python access_api.py %s %s %s %s %s" % (username, password, OAuthTwoClientID, ClientOrConsumerSecret, date))
+date = "2016-05-22"
+
+for index, row in users.iterrows():
+    data = access_api(row['username'], row['password'], row['OAuthTwoClientID'], row['ClientOrConsumerSecret'], date)
+    get_heart_rate_data(data, row['username'], date)
+    get_calories_data(data, row['username'], date)
+    get_distance_data(data, row['username'], date)
+    get_floors_data(data, row['username'], date)
+    get_steps_data(data, row['username'], date)
+    get_sleep_data(data, row['username'], date)
