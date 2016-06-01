@@ -1,0 +1,5 @@
+fitbit == 0.2.2
+matplotlib == 1.5.1
+pandas == 0.18.0
+selenium == 2.53.2
+Flask == 0.11
