@@ -183,10 +183,8 @@ def get_sleep_data(access_api_object, username, date):
                 for value in intraday_sleep_rate_data:
                     if datetime.strptime(value['dateTime'], "%H:%M:%S").time() >= start_date_datetime.time():
                         value['date'] = str(start_date_datetime.date())
-                        print(value)
                     else:
                         value['date'] = str((start_date_datetime + timedelta(days=1)).date())
-                        print(value)
                 intraday_sleep_rate_data_list = [(username, d['date']+'T'+d['dateTime'], d['value']) for d in intraday_sleep_rate_data]
                 intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","value"])
                 if not os.path.exists('data\\%s\\sleep' % username):

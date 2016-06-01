@@ -1,6 +1,6 @@
 # Access Fitbit API for Personal Data
 
-This is the code to connect to the Fitbit API and extract intraday heart rate data.
+This is the code to connect to the Fitbit API and extract available intraday data.
 
 ### Requirements
 
@@ -27,14 +27,22 @@ This is the code to connect to the Fitbit API and extract intraday heart rate da
   * To access the client_id and client_secret, click `Manage My Apps` on dev.fitbit.com, and select the personal application you created.
   * The Client Secret and Client ID will be available, add these along with the login email and password to "data\user_info.csv"
 * Run `get_user_data.py YYYY-MM-DD` with the date that you wish to access data
-* Data will be gathered for each user in the user_info.csv and saved to the SQLite `data\user_data.db` database.
-* Currently the `access_api.py` script will gather and store intraday heartrate data, accurate to 5 second intervals.
+* Data will be gathered for each user in the user_info.csv and saved as .CSV files `data\username\data_source\data.csv`.
 
 ### Database Schema
 
-The `data\user_data.db` file contains one table `intraday_heartrate` with the following schema:
+The data files contains one days data for the given intraday field with the following schema:
 
-username (*string*)|timestamp (*timestamp*)|value (*int*)
--------------------|-----------------------|-------------
+* If heartrate, distance, floors, or sleep
+
+username|timestamp|value
+--------|---------|-----
 useremail@example.com|2015-05-10T10:30:00|75
 useremail@example.com|2015-05-10T10:30:05|78
+
+* If calories
+
+username|level|mets|timestamp|value
+--------|-----|----|---------|-----
+useremail@example.com|1|5|2015-05-10T10:30:00|75
+useremail@example.com|2|10|2015-05-10T10:30:05|78

@@ -1,10 +1,11 @@
 import pandas as pd
 from access_api import *
+import sys
 
 # get the users arguments by looping through users
 users = pd.read_csv(r'data\user_info.csv')
 
-date = "2016-05-22"
+date = sys.argv[1]
 
 for index, row in users.iterrows():
     data = access_api(row['username'], row['password'], row['OAuthTwoClientID'], row['ClientOrConsumerSecret'], date)
