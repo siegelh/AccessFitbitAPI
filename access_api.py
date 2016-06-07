@@ -25,8 +25,8 @@ def access_api(username, password, OAuthTwoClientID, ClientOrConsumerSecret, dat
     chromedriver = r"requirements\chromedriver.exe"
     os.environ["webdriver.chrome.driver"] = chromedriver
     driver = webdriver.Chrome(chromedriver)
-    authorizationURL = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=" + OAuthTwoClientID + "&redirect_uri=" + urllib.quote_plus(
-        redirectURL) + "&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight"
+    authorizationURL = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=" + str(OAuthTwoClientID) + "&redirect_uri=" + str(urllib.quote_plus(
+        redirectURL)) + "&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight"
     driver.get(authorizationURL)
 
     with open(r'requirements\jquery-1.12.3.min.js', 'r') as jquery_js:
