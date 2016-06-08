@@ -97,10 +97,8 @@ def get_heart_rate_data(access_api_object, username, date):
         intraday_heart_rate_data = heart_rate_data_raw['activities-heart-intraday']['dataset']
         intraday_heart_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_heart_rate_data]
         intraday_heart_rate_data_df = pd.DataFrame(intraday_heart_rate_data_list,columns=["username","datetime","value"])
-        if not os.path.exists('data\\%s\\heart_rate' % username):
-            os.makedirs('data\\%s\\heart_rate' % username)
-        intraday_heart_rate_data_df.to_csv('data\\%s\\heart_rate\\%s.csv' % (username, date), index=False)
-        print("Intraday heart rate data for %s on date %s saved." % (username, date))
+        return intraday_heart_rate_data_df
+        print("Intraday heart rate data for %s on date %s retrieved." % (username, date))
     else:
         print("Intraday heart rate data missing for %s on date %s. Available keys are: %s" % (username, date, heart_rate_data_raw.keys()))
         print("Skipping.")
@@ -112,10 +110,8 @@ def get_calories_data(access_api_object, username, date):
         intraday_calories_rate_data = calories_data_raw['activities-calories-intraday']['dataset']
         intraday_calories_rate_data_list = [(username, d["level"], d["mets"], date+'T'+d['time'], d['value']) for d in intraday_calories_rate_data]
         intraday_calories_rate_data_df = pd.DataFrame(intraday_calories_rate_data_list,columns=["username","level","mets","datetime","value"])
-        if not os.path.exists('data\\%s\\calories' % username):
-            os.makedirs('data\\%s\\calories' % username)
-        intraday_calories_rate_data_df.to_csv('data\\%s\\calories\\%s.csv' % (username, date), index=False)
-        print("Intraday calorie data for %s on date %s saved." % (username, date))
+        return intraday_calories_rate_data_df
+        print("Intraday calorie data for %s on date %s retrieved." % (username, date))
     else:
         print("Intraday calorie data missing for %s on date %s. Available keys are: %s" % (username, date, calories_data_raw.keys()))
         print("Skipping.")
@@ -127,10 +123,8 @@ def get_distance_data(access_api_object, username, date):
         intraday_distance_rate_data = distance_data_raw['activities-distance-intraday']['dataset']
         intraday_distance_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_distance_rate_data]
         intraday_distance_rate_data_df = pd.DataFrame(intraday_distance_rate_data_list,columns=["username","datetime","value"])
-        if not os.path.exists('data\\%s\\distance' % username):
-            os.makedirs('data\\%s\\distance' % username)
-        intraday_distance_rate_data_df.to_csv('data\\%s\\distance\\%s.csv' % (username, date), index=False)
-        print("Intraday distance data for %s on date %s saved." % (username, date))
+        return intraday_distance_rate_data_df
+        print("Intraday distance data for %s on date %s retrieved." % (username, date))
     else:
         print("Intraday distance data missing for %s on date %s. Available keys are: %s" % (username, date, distance_data_raw.keys()))
         print("Skipping.")   
@@ -142,10 +136,8 @@ def get_floors_data(access_api_object, username, date):
         intraday_floors_rate_data = floors_data_raw['activities-floors-intraday']['dataset']
         intraday_floors_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_floors_rate_data]
         intraday_floors_rate_data_df = pd.DataFrame(intraday_floors_rate_data_list,columns=["username","datetime","value"])
-        if not os.path.exists('data\\%s\\floors' % username):
-            os.makedirs('data\\%s\\floors' % username)
-        intraday_floors_rate_data_df.to_csv('data\\%s\\floors\\%s.csv' % (username, date), index=False)
-        print("Intraday floors data for %s on date %s saved." % (username, date))
+        return intraday_floors_rate_data_df
+        print("Intraday floors data for %s on date %s retrieved." % (username, date))
     else:
         print("Intraday floors data missing for %s on date %s. Available keys are: %s" % (username, date, floors_data_raw.keys()))
         print("Skipping.")   
@@ -157,10 +149,8 @@ def get_steps_data(access_api_object, username, date):
         intraday_steps_rate_data = steps_data_raw['activities-steps-intraday']['dataset']
         intraday_steps_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_steps_rate_data]
         intraday_steps_rate_data_df = pd.DataFrame(intraday_steps_rate_data_list,columns=["username","datetime","value"])
-        if not os.path.exists('data\\%s\\steps' % username):
-            os.makedirs('data\\%s\\steps' % username)
-        intraday_steps_rate_data_df.to_csv('data\\%s\\steps\\%s.csv' % (username, date), index=False)
-        print("Intraday steps data for %s on date %s saved." % (username, date))
+        return intraday_steps_rate_data_df
+        print("Intraday steps data for %s on date %s retrieved." % (username, date))
     else:
         print("Intraday steps data missing for %s on date %s. Available keys are: %s" % (username, date, steps_data_raw.keys()))
         print("Skipping.")  
@@ -175,10 +165,8 @@ def get_sleep_data(access_api_object, username, date):
             if str(start_date_datetime.date()) == date:
                 intraday_sleep_rate_data_list = [(username, date+'T'+d['dateTime'], d['value']) for d in intraday_sleep_rate_data]
                 intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","value"])
-                if not os.path.exists('data\\%s\\sleep' % username):
-                    os.makedirs('data\\%s\\sleep' % username)
-                intraday_sleep_rate_data_df.to_csv('data\\%s\\sleep\\%s.csv' % (username, date), index=False)
-                print("Intraday sleep data for %s on date %s saved." % (username, date))
+                return intraday_sleep_rate_data_df
+                print("Intraday sleep data for %s on date %s retrieved." % (username, date))
             else:
                 for value in intraday_sleep_rate_data:
                     if datetime.strptime(value['dateTime'], "%H:%M:%S").time() >= start_date_datetime.time():
@@ -187,10 +175,8 @@ def get_sleep_data(access_api_object, username, date):
                         value['date'] = str((start_date_datetime + timedelta(days=1)).date())
                 intraday_sleep_rate_data_list = [(username, d['date']+'T'+d['dateTime'], d['value']) for d in intraday_sleep_rate_data]
                 intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","value"])
-                if not os.path.exists('data\\%s\\sleep' % username):
-                    os.makedirs('data\\%s\\sleep' % username)
-                intraday_sleep_rate_data_df.to_csv('data\\%s\\sleep\\%s.csv' % (username, date), index=False)
-                print("Intraday sleep data for %s on date %s saved." % (username, date))
+                return intraday_sleep_rate_data_df
+                print("Intraday sleep data for %s on date %s retrieved." % (username, date))
                 
         else:
             print("Intraday sleep data missing for %s on date %s." % (username, date))
