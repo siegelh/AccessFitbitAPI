@@ -26,23 +26,14 @@ This is the code to connect to the Fitbit API and extract available intraday dat
 * Clone the repo and update the `data\user_info.csv` with user information (see requirements above)
   * To access the client_id and client_secret, click `Manage My Apps` on dev.fitbit.com, and select the personal application you created.
   * The Client Secret and Client ID will be available, add these along with the login email and password to "data\user_info.csv"
-* Run `get_user_data.py YYYY-MM-DD` with the date that you wish to access data
-* Data will be gathered for each user in the user_info.csv and saved as .CSV files `data\username\data_source\data.csv`.
+* Run `get_user_data.py YYYY-MM-DD` with the date that you wish to access data. Optionally, for multiple days of data, provide a second date in the command line. All days will be included from start date to end date (including end date).
+* Data will be gathered for each user in the user_info.csv and saved as .CSV files `data\username\date.csv`. If an end date is provided, the file will be saved as `data\username\start_date_end_date.csv`
 
 ### Database Schema
 
-The data files contains one days data for the given intraday field with the following schema:
+The resulting files contains data for the given intraday field with the following schema:
 
-* If heartrate, distance, floors, or sleep
-
-username|timestamp|value
---------|---------|-----
-useremail@example.com|2015-05-10T10:30:00|75
-useremail@example.com|2015-05-10T10:30:05|78
-
-* If calories
-
-username|level|mets|timestamp|value
---------|-----|----|---------|-----
-useremail@example.com|1|5|2015-05-10T10:30:00|75
-useremail@example.com|2|10|2015-05-10T10:30:05|78
+username|datetime|calories_value|calories_level|calories_mets|distance_value|floors_value|steps_value|sleep_value
+--------|--------|--------------|--------------|-------------|--------------|------------|-----------|-----------
+useremail@example.com|2015-05-10T10:30:00|1.5|0|20|.01|75|5|100|0
+useremail@example.com|2015-05-10T10:30:05|1.5|1|40|.02|78|5|150|0

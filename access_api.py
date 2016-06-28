@@ -96,7 +96,7 @@ def get_heart_rate_data(access_api_object, username, date):
     if "activities-heart-intraday" in heart_rate_data_raw.keys():
         intraday_heart_rate_data = heart_rate_data_raw['activities-heart-intraday']['dataset']
         intraday_heart_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_heart_rate_data]
-        intraday_heart_rate_data_df = pd.DataFrame(intraday_heart_rate_data_list,columns=["username","datetime","value"])
+        intraday_heart_rate_data_df = pd.DataFrame(intraday_heart_rate_data_list,columns=["username","datetime","heart_rate_value"])
         return intraday_heart_rate_data_df
         print("Intraday heart rate data for %s on date %s retrieved." % (username, date))
     else:
@@ -109,7 +109,7 @@ def get_calories_data(access_api_object, username, date):
     if "activities-calories-intraday" in calories_data_raw.keys():
         intraday_calories_rate_data = calories_data_raw['activities-calories-intraday']['dataset']
         intraday_calories_rate_data_list = [(username, d["level"], d["mets"], date+'T'+d['time'], d['value']) for d in intraday_calories_rate_data]
-        intraday_calories_rate_data_df = pd.DataFrame(intraday_calories_rate_data_list,columns=["username","level","mets","datetime","value"])
+        intraday_calories_rate_data_df = pd.DataFrame(intraday_calories_rate_data_list,columns=["username","calories_level","calories_mets","datetime","calories_value"])
         return intraday_calories_rate_data_df
         print("Intraday calorie data for %s on date %s retrieved." % (username, date))
     else:
@@ -122,7 +122,7 @@ def get_distance_data(access_api_object, username, date):
     if "activities-distance-intraday" in distance_data_raw.keys():
         intraday_distance_rate_data = distance_data_raw['activities-distance-intraday']['dataset']
         intraday_distance_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_distance_rate_data]
-        intraday_distance_rate_data_df = pd.DataFrame(intraday_distance_rate_data_list,columns=["username","datetime","value"])
+        intraday_distance_rate_data_df = pd.DataFrame(intraday_distance_rate_data_list,columns=["username","datetime","distance_value"])
         return intraday_distance_rate_data_df
         print("Intraday distance data for %s on date %s retrieved." % (username, date))
     else:
@@ -135,7 +135,7 @@ def get_floors_data(access_api_object, username, date):
     if "activities-floors-intraday" in floors_data_raw.keys():
         intraday_floors_rate_data = floors_data_raw['activities-floors-intraday']['dataset']
         intraday_floors_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_floors_rate_data]
-        intraday_floors_rate_data_df = pd.DataFrame(intraday_floors_rate_data_list,columns=["username","datetime","value"])
+        intraday_floors_rate_data_df = pd.DataFrame(intraday_floors_rate_data_list,columns=["username","datetime","floors_value"])
         return intraday_floors_rate_data_df
         print("Intraday floors data for %s on date %s retrieved." % (username, date))
     else:
@@ -148,7 +148,7 @@ def get_steps_data(access_api_object, username, date):
     if "activities-steps-intraday" in steps_data_raw.keys():
         intraday_steps_rate_data = steps_data_raw['activities-steps-intraday']['dataset']
         intraday_steps_rate_data_list = [(username, date+'T'+d['time'], d['value']) for d in intraday_steps_rate_data]
-        intraday_steps_rate_data_df = pd.DataFrame(intraday_steps_rate_data_list,columns=["username","datetime","value"])
+        intraday_steps_rate_data_df = pd.DataFrame(intraday_steps_rate_data_list,columns=["username","datetime","steps_value"])
         return intraday_steps_rate_data_df
         print("Intraday steps data for %s on date %s retrieved." % (username, date))
     else:
@@ -164,7 +164,7 @@ def get_sleep_data(access_api_object, username, date):
             start_date_datetime = datetime.strptime(sleep_data_raw['sleep'][0]['startTime'], '%Y-%m-%dT%H:%M:%S.000')
             if str(start_date_datetime.date()) == date:
                 intraday_sleep_rate_data_list = [(username, date+'T'+d['dateTime'], d['value']) for d in intraday_sleep_rate_data]
-                intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","value"])
+                intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","sleep_value"])
                 return intraday_sleep_rate_data_df
                 print("Intraday sleep data for %s on date %s retrieved." % (username, date))
             else:
@@ -174,7 +174,7 @@ def get_sleep_data(access_api_object, username, date):
                     else:
                         value['date'] = str((start_date_datetime + timedelta(days=1)).date())
                 intraday_sleep_rate_data_list = [(username, d['date']+'T'+d['dateTime'], d['value']) for d in intraday_sleep_rate_data]
-                intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","value"])
+                intraday_sleep_rate_data_df = pd.DataFrame(intraday_sleep_rate_data_list,columns=["username","datetime","sleep_value"])
                 return intraday_sleep_rate_data_df
                 print("Intraday sleep data for %s on date %s retrieved." % (username, date))
                 
